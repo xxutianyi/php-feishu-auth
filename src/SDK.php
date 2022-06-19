@@ -18,6 +18,7 @@ abstract class SDK
     ];
 
     private string $TenantAccessToken;
+    protected Config $config;
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -25,6 +26,7 @@ abstract class SDK
      */
     public function __construct(Config $config)
     {
+        $this->config = $config;
         $TenantAccessTokenInstance = new TenantAccessToken($config);
         $this->TenantAccessToken = $TenantAccessTokenInstance->GetTenantAccessToken();
     }
