@@ -58,6 +58,7 @@ class TenantAccessToken
     {
         $url = self::BASE_URL . self::INTERNAL_ACCESS_TOKEN;
         $call = HttpCall::post($url, [], $this->params);
+        $call = json_decode($call, true);
         $this->TenantAccessTokenInstance->set($call['tenant_access_token']);
         $this->TenantAccessTokenInstance->expiresAfter($call['expire']);
         $this->cache->save($this->TenantAccessTokenInstance);
